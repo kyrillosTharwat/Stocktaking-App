@@ -14,5 +14,5 @@
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/stocktaking-app.git
+   git clone [[https://github.com/yourusername/stocktaking-app.git](https://github.com/kyrillosTharwat/Stocktaking-App.git)](https://github.com/kyrillosTharwat/Stocktaking-App.git)
    cd stocktaking-app
