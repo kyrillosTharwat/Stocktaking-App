@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_based_stocktaking_app_assignment/controllers/new_document_controller.dart';
 import 'package:get/get.dart';
 
 import '../common/widgets/experience_widgets.dart';
@@ -8,14 +7,17 @@ import '../services/database_service.dart';
 
 class InventoryController extends GetxController {
   final DatabaseService _database = DatabaseService();
+
   final TextEditingController _barcodeController = TextEditingController();
 
   TextEditingController get barcodeController => _barcodeController;
 
-   late List<Item> itemsList ;
+  late List<Item> itemsList;
+
   bool _isItemExist = false;
 
   bool get isItemExist => _isItemExist;
+
   Item? _searchedItem;
 
   Item? get searchedItem => _searchedItem;
@@ -23,9 +25,8 @@ class InventoryController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-   await getItems();
+    await getItems();
   }
-
 
   Future<List<Item>> getItems() async {
     itemsList = [];

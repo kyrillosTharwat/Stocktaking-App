@@ -10,10 +10,12 @@ import '../models/stock_model.dart';
 
 class NewDocumentController extends GetxController {
   final DatabaseService _database = DatabaseService();
-  late List<Item> itemsList ;
+  late List<Item> itemsList;
+
   List<Stock> _stocksList = [];
 
   List<Stock> get stocksList => _stocksList;
+
   final List<Item> _searchedList = [];
 
   List<Item>? get searchedList => _searchedList;
@@ -21,11 +23,13 @@ class NewDocumentController extends GetxController {
   bool _isUploading = false;
 
   bool get isUploading => _isUploading;
+
   bool? _isItemExist;
 
   bool? get isItemExist => _isItemExist;
 
   final TextEditingController _barcodeController = TextEditingController();
+
   final TextEditingController _quantityController = TextEditingController();
 
   TextEditingController get barcodeController => _barcodeController;
@@ -35,14 +39,15 @@ class NewDocumentController extends GetxController {
   List<Stock> stocksToUpload = [];
 
   final List<double> _enteredQuantityList = [];
-  List <double> get enteredQuantityList => _enteredQuantityList;
+
+  List<double> get enteredQuantityList => _enteredQuantityList;
+
   @override
-   void onInit() async {
+  void onInit() async {
     super.onInit();
-   await getItems();
+    await getItems();
     await getStocks();
     _isUploading = false;
-
   }
 
   Future<List<Item>> getItems() async {
@@ -92,7 +97,7 @@ class NewDocumentController extends GetxController {
       }
     } else {
       ExpWidgets.showRedSnackBar(
-          "Items is empty try to add some items from menu");
+          "Items is empty");
     }
     update();
   }
@@ -124,11 +129,12 @@ class NewDocumentController extends GetxController {
             "Your Stocks List is Uploaded successfully");
         break;
       } catch (e) {
-        ExpWidgets.showRedSnackBar('Cant upload your list');
+        ExpWidgets.showRedSnackBar('Can\'t upload your list');
         break;
       }
     }
   }
+
   Future<void> updateItems() async {
     for (Item item in _searchedList) {
       await _database.updateItemPriceAndQuantity(
@@ -138,7 +144,6 @@ class NewDocumentController extends GetxController {
       );
     }
   }
-
   void deleteItem(index) {
     _searchedList[index].quantity -= _enteredQuantityList[index];
     _searchedList.removeAt(index);

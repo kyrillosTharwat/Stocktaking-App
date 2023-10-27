@@ -36,7 +36,6 @@ dependencies:
   path:
   intl:
   sizer:
-  flutter_onboarding_slider:
   animated_splash_screen:
   ionicons:
   conditional_builder_null_safety:

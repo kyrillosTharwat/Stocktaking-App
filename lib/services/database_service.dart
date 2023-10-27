@@ -42,7 +42,7 @@ class DatabaseService {
             $name TEXT NOT NULL,
             $quantity DOUBLE NOT NULL,
             $price DOUBLE NOT NULL,
-            $barcode TEXT NOT NULL,
+            $barcode TEXT NOT NULL UNIQUE,
             PRIMARY KEY ($itemId)
           );
           ''');
@@ -57,16 +57,7 @@ class DatabaseService {
           );
           ''');
   }
-
-  // Helper methods
-
-  // Inserts a row in the database where each key in the Map is a column name
-  // and the value is the column value. The return value is the id of the
-  // inserted row.
-  Future<int> insert(Map<String, dynamic> row) async {
-    return await _db.insert(items, row);
-  }
-
+  // SQL code to insert to items table
   Future<int> insertIntoItems({required Item item}) async {
     return await _db.transaction((txn) async {
       return txn
@@ -87,7 +78,7 @@ class DatabaseService {
           .catchError((e) => e);
     });
   }
-
+  // SQL code to insert to stocks table
   Future<int> insertIntoStocks({required Stock stock}) async {
     return await _db.transaction((txn) async {
       return txn
@@ -106,7 +97,7 @@ class DatabaseService {
           .catchError((e) => e);
     });
   }
-
+  // SQL code to git items from items table
   Future<List<Item>> getItemsData() async {
     List<Item> itemsList = [];
     List<Item> listFromJson(List<Map<String, dynamic>> jsonData) {
@@ -123,7 +114,7 @@ class DatabaseService {
     }).catchError((e) {});
     return itemsList;
   }
-
+  // SQL code to git stocks from stocks table
   Future<List<Stock>> getStocksData() async {
     List<Stock> stocksList = [];
     List<Stock> listFromJson(List<Map<String, dynamic>> jsonData) {
@@ -140,7 +131,7 @@ class DatabaseService {
     }).catchError((e) {});
     return stocksList;
   }
-
+  // SQL code to update price if wanted and quantity
   Future<int> updateItemPriceAndQuantity({
     required double newPrice,
     required double newQuantity,
@@ -157,40 +148,5 @@ class DatabaseService {
           .then((value) => value)
           .catchError((e) => e);
     });
-  }
-
-  // All of the rows are returned as a list of maps, where each map is
-  // a key-value list of columns.
-  Future<List<Map<String, dynamic>>> queryAllRows() async {
-    return await _db.query(items);
-  }
-
-  // All of the methods (insert, query, update, delete) can also be done using
-  // raw SQL commands. This method uses a raw query to give the row count.
-  Future<int> queryRowCount() async {
-    final results = await _db.rawQuery('SELECT COUNT(*) FROM $items');
-    return Sqflite.firstIntValue(results) ?? 0;
-  }
-
-  // We are assuming here that the id column in the map is set. The other
-  // column values will be used to update the row.
-  Future<int> update(Map<String, dynamic> row) async {
-    int id = row[itemId];
-    return await _db.update(
-      items,
-      row,
-      where: '$itemId = ?',
-      whereArgs: [id],
-    );
-  }
-
-  // Deletes the row specified by the id. The number of affected rows is
-  // returned. This should be 1 as long as the row exists.
-  Future<int> delete(int id) async {
-    return await _db.delete(
-      items,
-      where: '$itemId = ?',
-      whereArgs: [id],
-    );
   }
 }

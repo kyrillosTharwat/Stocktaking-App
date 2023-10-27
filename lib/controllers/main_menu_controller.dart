@@ -3,9 +3,8 @@ import 'package:get/get.dart';
 
 import '../models/item_model.dart';
 
-
 class MainMenuController extends GetxController {
-  static final  DatabaseService _database = DatabaseService();
+  static final DatabaseService _database = DatabaseService();
 
   static List<Item> items = [
     Item(quantity: 1, barcode: '1', itemId: '1', price: 10, name: 'item1'),
@@ -28,11 +27,8 @@ class MainMenuController extends GetxController {
       }
     }
   }
-  void onSwitchChange(bool value)
-  {
-    value =! value;
+  void onSwitchChange(bool value) {
+    value = !value;
     update();
   }
-
-
 }

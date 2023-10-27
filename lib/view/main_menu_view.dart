@@ -30,6 +30,7 @@ class MainMenuView extends StatelessWidget {
                  Ionicons.moon,
                  size: 25.sp,
                ),
+                SizedBox(width: 2.w,),
                 Switch(
                   activeColor: AppColors.hardMintGreen,
                   value: ThemeService().isSavedDarkMode(),
