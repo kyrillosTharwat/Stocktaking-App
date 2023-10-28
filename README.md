@@ -15,18 +15,25 @@
 
    ```bash
    git clone https://github.com/kyrillosTharwat/Stocktaking-App.git
+   
 2. Install the app's dependencies:
+
    ```bash
    flutter pub get
+   
 3. Run the app:
+
    ```bash
    flutter run
 
 ## Usage
 
 1- Open the app and create a new stocktaking document.
+
 2- Use the barcode to add items to the document.
+
 3- Adjust item quantities as needed.
+
 4- Review your stocktaking items.
 
 ## Record To Preview
