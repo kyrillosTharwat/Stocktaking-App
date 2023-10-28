@@ -38,7 +38,9 @@
 
 ## Record To Preview
 
-![Stocktacking APP](https://github.com/kyrillosTharwat/Stocktaking-App/assets/105592871/8099e9ec-b8cc-4af6-8064-a95ff4fce283)
+#### App Icon 
+
+<img src="https://github.com/kyrillosTharwat/Stocktaking-App/assets/105592871/8099e9ec-b8cc-4af6-8064-a95ff4fce283" width="200" height="400">
 
 - [App preview](https://drive.google.com/file/d/17bFUKD_d6VOu03BI8LH6KbqJ-uwsLXtL/view?usp=sharing)
 
